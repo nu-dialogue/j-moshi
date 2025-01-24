@@ -1,0 +1,41 @@
+h1, h2, h3, h4, h5, h6, body, b, strong, th {
+    color: #595959;
+}
+
+th, td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.audio-table audio {
+    max-width: 100%;
+}
+
+.btn-secondary {
+    padding: 0.1rem 0.8rem;
+    font-size: small
+}
+
+.ratio-8x5 {
+    --bs-aspect-ratio: 62.5%;
+}
+
+.footnote {
+    margin-top: 2rem;
+}
+
+.footnote-divider {
+    margin: 1rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    width: 25%;  /* Make the divider shorter than full width */
+}
+
+.footnote small {
+    font-size: 0.875rem;
+    color: #6c757d;
+}
+
+.footnote-ref {
+    font-size: x-small;
+    vertical-align: super;
+}

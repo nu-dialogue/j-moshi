@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>J-Moshi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="static/audioMerger.js"></script>
+    <script src="static/script.js"></script>
+  </head>
+  <body>
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+      <div class="text-center">
+        <h2>日本語Full-duplex音声対話システムの試作</h2>
+        <p class="lead fw-bold">
+          <a class="btn border-white bg-white fw-bold">Paper (To appear)</a>
+          |
+          <a href="https://huggingface.co/nu-dialogue/j-moshi-ext" class="btn border-white bg-white fw-bold">Model</a>
+          |
+          <a href="https://github.com/nu-dialogue/j-moshi" class="btn border-white bg-white fw-bold">Code</a>
+        </p>
+        <p class="mb-0">
+          <a href="https://ohashi56225.github.io">大橋 厚元</a>，<a href="https://shinyaaa1003.github.io/">飯塚 慎也</a>，姜 菁菁，<a href="https://www.ds.is.i.nagoya-u.ac.jp">東中 竜一郎</a>
+        </p>
+        <p><b>名古屋大学 大学院情報学研究科</b></p>
+      </div>
+      <p>
+        <b>概要:</b> 
+        人間同士の対話における発話のオーバーラップや相槌など，同時双方向的な特徴をモデル化できるfull-duplex音声対話システムは，近年注目を集めている．しかし日本語においては，full-duplex音声対話システムはほとんど見られず，full-duplex音声対話システムの開発に関する知見は不足している．本研究では，英語における主要なfull-duplex音声対話システムであるMoshi<span style="font-size: x-small; vertical-align: super;">[<a href="#fn-1">1</a>]</span> をベースとすることで，日本語で利用可能な最初のfull-duplex音声対話システム J-Moshi<span style="font-size: x-small; vertical-align: super;">[<a href="#fn-2">2</a>]</span> を試作し，公開する．
+      </p>
+      <div class="container mb-4">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10">
+            <div class="ratio ratio-16x9">
+              <video class="object-fit-contain" controls>
+                <source src="static/video/oh-1-title.mp4" type="video/mp4">
+                Your browser does not support HTML video.
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footnote">
+        <hr class="footnote-divider">
+        <small class="text-muted">
+          <ul style="list-style: none;">
+            <li id="fn-1">[1] J-Moshi のベースとなった Moshi の詳細については，<a href="https://arxiv.org/abs/2410.00037">公式のテクニカルペーパー</a>を参照してください．</li>
+            <li id="fn-2">[2] 本ページにおける音声対話のデモ動画では，わかりやすさのためモデル名を "J-Moshi" と表記していますが，実際は，音声合成による拡張データによって学習された J-Moshi-ext を使用しています．</li>
+          </ul>
+        </small>
+      </div>
+    </div>
+
+
+    <div class="container shadow p-5 mb-5 bg-white rounded">
+      <h3>リアルタイム音声対話</h3>
+      <p>
+        J-Moshiとユーザによる実際の音声対話のサンプル．
+      </p>
+      <div class="container py-4" id="demo-video-container"></div>
+    </div>
+
+
+    <div class="container shadow p-5 mb-5 bg-white rounded">
+      <h3>対話継続（Prompted Dialogue Continuation）</h3>
+      <p>
+        人間同士の10秒の対話音声（プロンプト）から，以下の各モデルが生成した20秒の対話音声サンプル．
+
+        <ul>
+          <li><b>Re-synthesis:</b> 実際の20秒の対話音声を，Moshiの音声トークナイザMimiによって再合成した音声</li>
+          <li><b>dGSLM:</b> 大規模な日本語音声対話データによって学習された<a href="https://aclanthology.org/2023.tacl-1.15/">dGSLM</a></li>
+          <li><b>J-Moshi:</b> 大規模な日本語音声対話データによって学習されたMoshi</li>
+          <li><b>J-Moshi-ext:</b> 大規模な日本語音声対話データとMulti-stream TTS<span style="font-size: x-small; vertical-align: super;">[<a href="#fn-3">3</a>]</span>による合成音声データで学習されたMoshi</li>
+        </ul>
+        以下の音声サンプルのうち，ベルが鳴るまでの10秒間がプロンプト音声であり，その後の20秒間が各モデルによって生成された音声です．
+      </p>
+      <div class="container pt-3 table-responsive">
+        <table class="table table-hover audio-table" id="continuation-table"></table>
+      </div>
+      <div class="footnote">
+        <hr class="footnote-divider">
+        <small class="text-muted">
+          <ul style="list-style: none;">
+            <li id="fn-3">[3] Multi-stream TTS については，<a href="https://arxiv.org/abs/2410.00037">Moshiテクニカルペーパー</a>のAppendix Cを参照してください．</li>
+          </ul>
+        </small>
+      </div>
+    </div>
+  
+
+    <div class="container shadow p-5 mb-5 bg-white rounded">
+      <h3>Multi-stream TTS</h3>
+      <p>
+      Multi-stream TTSによって，対話テキストから合成されたステレオ対話音声サンプル．
+      </p>
+      <div class="container pt-3 table-responsive">
+        <table class="table table-hover" id="mstts-table"></table>
+      </div>
+    </div>
+
+
+    <div class="container shadow p-5 mb-5 bg-white rounded">
+      <h3>Acknowledgments</h3>
+      <p>
+        本研究は，JSTムーンショット型研究開発事業，JPMJMS2011の支援を受けました．雑談対話コーパスおよび相談対話コーパスは，株式会社アイシンとの共同研究において構築しました．また本研究では，名古屋大学のスーパーコンピュータ「不老」を利用しました．最後に，Moshi のテクニカルペーパーおよびモデルを公開していただいた Kyutai Labs に感謝いたします．
+      </p>
+      <a href="https://avatar-ss.org/"><img src="static/image/moonshot_logo.svg" width="200"></a>
+    </div>
+    
+    
+    <div class="container shadow p-5 mb-5 bg-white rounded">
+      <h3>Contact</h3>
+      <p>
+        J-Moshiに関するお問い合わせは，<a href="https://www.ds.is.i.nagoya-u.ac.jp">東中研究室</a>までお願いいたします．
+      </p>
+    </div>
+
+
+    <div class="container p-5 mb-5 bg-white rounded">
+      <p class="mb-0">
+        This page was adapted from the <a href="https://google-research.github.io/seanet/soundstorm/examples">SoundStorm project page</a>.
+      </p>
+    </div>
+
+
+  </body>
+</html>
