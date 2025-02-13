@@ -16,9 +16,9 @@ J-Moshiは，日本語におけるfull-duplex音声対話システムです．�
 ## Models
 以下の2種類のJ-Moshiが公開されています:
 - [nu-dialogue/j-moshi](https://huggingface.co/nu-dialogue/j-moshi)
-    - [kyutai/moshika-pytorch-bf16](https://huggingface.co/kyutai/moshika-pytorch-bf16)をベースとし，大規模な日本語音声対話データによって学習されたモデル
+    - [kyutai/moshiko-pytorch-bf16](https://huggingface.co/kyutai/moshiko-pytorch-bf16)をベースとし，大規模な日本語音声対話データによって学習されたモデル
 - [nu-dialogue/j-moshi-ext](https://huggingface.co/nu-dialogue/j-moshi-ext)
-    - [kyutai/moshika-pytorch-bf16](https://huggingface.co/kyutai/moshika-pytorch-bf16)をベースとし，大規模な日本語音声対話データおよび，Multi-stream TTSを用いて合成された拡張データによって学習されたモデル
+    - [kyutai/moshiko-pytorch-bf16](https://huggingface.co/kyutai/moshiko-pytorch-bf16)をベースとし，大規模な日本語音声対話データおよび，Multi-stream TTSを用いて合成された拡張データによって学習されたモデル
 
 また各リポジトリには，以下の3つのモデルファイルが含まれています:
 - `model.safetensors`
@@ -26,7 +26,7 @@ J-Moshiは，日本語におけるfull-duplex音声対話システムです．�
 - `tokenizer_spm_32k_3.model`
     - テキストトークナイザ．[rinna/japanese-gpt2-medium](https://huggingface.co/rinna/japanese-gpt2-medium)の日本語SentencePieceモデル．
 - `tokenizer-e351c8d8-checkpoint125.safetensors`
-    - 音声トークナイザ．[kyutai/moshika-pytorch-bf16](https://huggingface.co/kyutai/moshika-pytorch-bf16)のMimiモデル．
+    - 音声トークナイザ．[kyutai/moshiko-pytorch-bf16](https://huggingface.co/kyutai/moshiko-pytorch-bf16)のMimiモデル．
 
 
 ## Interactive Demo
