@@ -184,3 +184,44 @@ $(document).ready(function() {
         });
     });
 });
+
+
+// Language switching functionality
+$(document).ready(function() {
+    // Get default language
+    const urlParams = new URLSearchParams(window.location.search);
+    // Validate lang parameter
+    const validLangs = ['ja', 'en'];
+    if (!urlParams.has('lang') || !validLangs.includes(urlParams.get('lang'))) {
+        console.warn(`Invalid or missing 'lang' parameter. Defaulting to 'ja'.`);
+        // Remove invalid lang parameter from URL
+        const newUrl = window.location.href.split('?')[0];
+        window.history.replaceState({}, document.title, newUrl);
+        // Set default language to Japanese
+        defaultLang = 'ja';
+    } else {
+        defaultLang = urlParams.get('lang');
+    }
+
+    // Set initial language
+    switchLanguage(defaultLang);
+    localStorage.setItem('selectedLanguage', defaultLang);
+
+    // Language button click handler
+    $('.lang-btn').click(function() {
+        const lang = $(this).data('lang');
+        switchLanguage(lang);
+        localStorage.setItem('selectedLanguage', lang);
+    });
+
+    function switchLanguage(lang) {
+        // Update button states
+        console.log(`Switching to language: ${lang}`);
+        $('.lang-btn').removeClass('btn-primary').addClass('btn-outline-primary');
+        $(`.lang-btn[data-lang="${lang}"]`).removeClass('btn-outline-primary').addClass('btn-primary');
+
+        // Show/hide language-specific content
+        $('[lang]').removeClass('active-lang');
+        $(`[lang="${lang}"]`).addClass('active-lang');
+    }
+});

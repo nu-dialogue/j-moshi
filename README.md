@@ -1,13 +1,18 @@
 # J-Moshi: A Japanese Full-duplex Spoken Dialogue System
 
-[![Paper](https://img.shields.io/badge/Paper-To_Appear-lightgrey.svg)]()
-[![Model](https://img.shields.io/badge/🤗_Hugging_Face-Model-ffcc66.svg)](https://huggingface.co/nu-dialogue/j-moshi-ext)
-[![Demo](https://img.shields.io/badge/GitHub_Pages-Demo-green.svg)](https://nu-dialogue.github.io/j-moshi)
-[![License](https://img.shields.io/badge/License-CC_BY--NC_4.0-blue)](LICENSE)
+ [![English](https://img.shields.io/badge/README-English-red.svg)](README-en.md) [![License](https://img.shields.io/badge/License-CC_BY--NC_4.0-blue.svg)](LICENSE)
 
-J-Moshiは，日本語におけるfull-duplex音声対話システムです．英語における7Bパラメータのfull-duplex音声対話モデル [Moshi](https://arxiv.org/abs/2410.00037) をベースとし，日本語音声対話データでの追加学習によって構築されました．発話のオーバーラップや相槌など，人間同士の対話におけるような自然なターンテイキングをリアルタイムに実現します．
+[📑 **Paper**](http://arxiv.org/abs/2506.02979)
+&nbsp;|&nbsp;
+[🤗 **Model**](https://huggingface.co/nu-dialogue/j-moshi-ext)
+&nbsp;|&nbsp;
+[🖥️ **Demo**](https://nu-dialogue.github.io/j-moshi)
+&nbsp;|&nbsp;
+[🔧 **Training Code**](https://github.com/nu-dialogue/moshi-finetune)
 
-このリポジトリでは，J-Moshiの学習済みモデル，およびモデルとの対話方法を提供します．なお，J-Moshiが生成した音声のサンプルは[こちら](https://nu-dialogue.github.io/j-moshi)からご覧いただけます．
+J-Moshiは，日本語におけるfull-duplex音声対話システムです．英語における7Bパラメータのfull-duplex音声対話モデル [Moshi](https://arxiv.org/abs/2410.00037) をベースとし，日本語音声対話データでの追加学習によって構築されました．発話のオーバーラップや相槌など，人間同士の対話におけるような自然なターンテイキングをリアルタイムに実現します．詳細は[我々の論文](http://arxiv.org/abs/2506.02979)を参照してください．
+
+このリポジトリでは，J-Moshiの学習済みモデル，およびモデルとの対話方法を提供します．また，J-Moshiが生成した[音声のサンプル](https://nu-dialogue.github.io/j-moshi)や，J-Moshi の学習に使用された[学習コードベース](https://github.com/nu-dialogue/moshi-finetune) も公開されています．
 
 > [!NOTE]
 > J-Moshiは試作段階であり，その応答は不自然な場合があります．また，J-Moshiの学習データの大部分は雑談対話であるため，ユーザの指示に従った応答を生成することはできません．
@@ -36,7 +41,7 @@ Kyutai公式の[MoshiのPyTorch実装](https://github.com/kyutai-labs/moshi/tree
 Python 3.10以上が必要です．
 
 ```bash
-pip install moshi
+pip install moshi<=0.2.2
 ```
 
 ### Usage
@@ -52,6 +57,7 @@ python -m moshi.server --hf-repo nu-dialogue/j-moshi-ext
 
 ## Training Details
 J-Moshiの学習では，以下の音声対話コーパスを使用しました．また，これらデータに加え，J-Moshi-extの学習では，テキスト対話コーパスから音声合成された拡張データも使用しました．使用したコーパスは以下の通りです:
+
 - 音声対話コーパス
     - [J-CHAT](https://arxiv.org/abs/2407.15828)
     - [日本語Callhome](https://catalog.ldc.upenn.edu/LDC96S37)
@@ -59,10 +65,11 @@ J-Moshiの学習では，以下の音声対話コーパスを使用しました�
     - [旅行代理店対話コーパス](https://dl.acm.org/doi/10.1145/3675166)
     - 雑談対話コーパス（内製）
     - 相談対話コーパス（内製）
+
 - テキスト対話コーパス
     - [日本語PersonaChat](https://arxiv.org/abs/2109.05217)
     - [日本語EmpatheticDialogues](https://arxiv.org/abs/2109.05217)
-    - [日本語日常対話コーパス](https://www.anlp.jp/proceedings/annual_meeting/2023/pdf_dir/H1-1.pdf)
+    - [日本語日常対話コーパス](https://github.com/jqk09a/japanese-daily-dialogue)
     - [RealPersonaChat](https://aclanthology.org/2023.paclic-1.85/)
 
 学習では，128基のNVIDIA V100 32GB GPUを使用しました．
@@ -80,11 +87,18 @@ J-Moshiは[CC BY-NC 4.0](LICENSE)の下で公開されており，研究目的�
 ## Citation
 ```bibtex
 @inproceedings{ohashi2025jmoshi,
+    title={Towards a Japanese Full-duplex Spoken Dialogue System},
+    author={Ohashi, Atsumoto and Iizuka, Shinya and Jiang, Jingjing and Higashinaka, Ryuichiro},
+    booktitle={Proceedings of the 26th Interspeech Conference},
+    year={2025},
+}
+
+@inproceedings{ohashi2025jmoshi,
   title = "日本語 {F}ull-duplex 音声対話システムの試作",
-  author = "大橋 厚元 and 飯塚 慎也 and 姜 菁菁 and 東中竜一郎",
+  author = "大橋 厚元 and 飯塚 慎也 and 姜 菁菁 and 東中 竜一郎",
   booktitle = "言語処理学会 第31回年次大会 発表論文集",
-  pages = "",
+  pages = "3164--3169",
   year = "2025",
-  url = ""
+  url = "https://www.anlp.jp/proceedings/annual_meeting/2025/pdf_dir/D8-6.pdf"
 }
 ```
