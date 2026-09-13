@@ -86,11 +86,11 @@ J-Moshiは[CC BY-NC 4.0](LICENSE)の下で公開されており，研究目的�
 
 ## Citation
 ```bibtex
-@inproceedings{ohashi2025jmoshi,
-    title={Towards a Japanese Full-duplex Spoken Dialogue System},
-    author={Ohashi, Atsumoto and Iizuka, Shinya and Jiang, Jingjing and Higashinaka, Ryuichiro},
-    booktitle={Proceedings of the 26th Interspeech Conference},
-    year={2025},
+@article{ohashi2025towards,
+  title={Towards a Japanese full-duplex spoken dialogue system},
+  author={Ohashi, Atsumoto and Iizuka, Shinya and Jiang, Jingjing and Higashinaka, Ryuichiro},
+  journal={arXiv preprint arXiv:2506.02979},
+  year={2025}
 }
 
 @inproceedings{ohashi2025jmoshi,
